@@ -1,0 +1,27 @@
+# Ignore virtual environments
+venv/
+.venv/
+ENV/
+env/
+
+# Byte-compiled files
+__pycache__/
+*.py[cod]
+*.so
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+
+# Environment variables
+.env
+
+# macOS files
+.DS_Store
+
+# VSCode or other IDE/editor settings
+.vscode/
+.idea/
+
+# Requirements lock (optional if you're using Poetry/pip-tools)
+poetry.lock
+pipfile.lock

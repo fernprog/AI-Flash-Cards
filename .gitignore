@@ -25,3 +25,7 @@ __pycache__/
 # Requirements lock (optional if you're using Poetry/pip-tools)
 poetry.lock
 pipfile.lock
+
+#Added
+backend/venv/
+frontend/node_modules/

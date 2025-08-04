@@ -5,6 +5,16 @@ from openai import OpenAI
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
+from sqlalchemy import create_engine, MetaData
+from databases import Database
+
+load_dotenv()
+
+DATABASE_URL = os.getenv("DATABASE_URL")
+database = Database(DATABASE_URL)
+metadata = MetaData()
+
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 app = FastAPI()
 
@@ -30,10 +40,15 @@ def run_script(input: Input):
     result = f"Hello from Python, you sent: {input.input}"
     return {"result": result}
 
-def promptOpenAiApi():
-    load_dotenv()
-    client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+@app.on_event("startup")
+async def connect():
+    await database.connect()
 
+@app.on_event("shutdown")
+async def disconnect():
+    await database.disconnect()
+
+def promptOpenAiApi():
     completion = client.chat.completions.create(
         model="gpt-3.5-turbo",
         messages=[

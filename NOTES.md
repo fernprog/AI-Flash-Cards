@@ -101,3 +101,5 @@ What is?
     Vite
     Docker
     Fastapi
+    CORS
+    FastAPI

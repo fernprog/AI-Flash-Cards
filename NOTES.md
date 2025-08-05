@@ -103,3 +103,7 @@ What is?
     Fastapi
     CORS
     FastAPI
+
+    REACT LOCAL HOST:
+    do this to kill stale sessions
+    for port in {5173..5177}; do lsof -ti :$port | xargs kill -9; done

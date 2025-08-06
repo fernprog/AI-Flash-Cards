@@ -1,6 +1,7 @@
 import psycopg2
 from dotenv import load_dotenv
 import os
+from psycopg2.extras import RealDictCursor
 
 load_dotenv()
 
@@ -16,7 +17,7 @@ class supabaseCRUD:
             port=os.getenv("port"),
             dbname=os.getenv("dbname")
         )
-        self.cursor = self.conn.cursor()
+        self.cursor = self.conn.cursor(cursor_factory=RealDictCursor)
 
     def Create(self, data_list: list[dict]) -> list[int]:
         if not data_list:
@@ -32,7 +33,7 @@ class supabaseCRUD:
         for data in data_list:
             values = tuple(data[col] for col in cols)
             self.cursor.execute(query, values)
-            returned_id = self.cursor.fetchone()[0]
+            returned_id = self.cursor.fetchone()["id"]  # <-- fetch returned id
             ids.append(returned_id)
 
         self.conn.commit()

@@ -27,6 +27,7 @@ app.add_middleware(
 
 user = [
     {
+        "user_id": 2,
         "username": "fernandoruiz",
         "email":"test@gmail.com",
         "password_hash": "howdy",
@@ -35,6 +36,9 @@ user = [
 
 class Prompt(BaseModel):
     input: str
+
+class Identification(BaseModel):
+    id_number: int
 
 @app.post("/run-script")
 def run_script(prompt: Prompt):
@@ -45,7 +49,7 @@ def run_script(prompt: Prompt):
 
     card_set = [
         {
-            "user_id": 2,
+            "user_id": user[0]["user_id"],
             "title": flashcards[0].get("s", prompt.input) if flashcards else prompt.input,
             "description": prompt.input
         }
@@ -96,7 +100,6 @@ def promptOpenAiApi(prompt: str):
 
     try:
         flashcards = json.loads(response)
-        print(flashcards)
     except json.JSONDecodeError:
         raise HTTPException(status_code=500, detail="Invalid JSON from OpenAI.")
 
@@ -107,3 +110,17 @@ def promptOpenAiApi(prompt: str):
             card.setdefault(key, "")
 
     return flashcards
+
+@app.get("/flashcard-sets")
+def get_sets():
+    sets_db = supabaseCRUD("flashcard_sets",{})
+    sets = sets_db.Read({"user_id" : user[0]["user_id"]})
+    sets_db.close()
+    return sets
+
+@app.post("/flashcards")
+def get_flashcards(set_id: Identification):
+    flashcards = supabaseCRUD("flashcards",{})
+    cards = flashcards.Read({"set_id" : set_id.id_number})
+    flashcards.close()
+    return cards

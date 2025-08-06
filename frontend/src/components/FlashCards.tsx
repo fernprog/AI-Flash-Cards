@@ -1,10 +1,13 @@
-import type { Card } from "../types/card";
-
-interface FlashCards {
-    card: Card;
-    showText: boolean;
-    handleClick: () => void;
-    handleNext: () => void;
+interface FlashCardsProps {
+  card: {
+    question: string;
+    answer: string;
+    difficulty: string;
+    subject: string;
+  };
+  showText: boolean;
+  handleClick: () => void;
+  handleNext: () => void;
 }
 
 export default function FlashCards({
@@ -12,10 +15,9 @@ export default function FlashCards({
     showText,
     handleClick,
     handleNext
-}: FlashCards) {
+}: FlashCardsProps) {
     return(
         <div className="bg-white rounded-2xl shadow-lg p-6 w-96 text-center">
-          <h2 className="text-xl font-semibold mb-2">{card.category}</h2>
           <p className="text-gray-600">{card.question}</p>
           {showText == true ? (<p>{card.answer}</p>) : null}
           <div className="flex justify-between">

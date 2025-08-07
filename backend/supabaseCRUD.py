@@ -5,6 +5,7 @@ from psycopg2.extras import RealDictCursor
 
 load_dotenv()
 
+#Class to perform general CRUD operations.
 class supabaseCRUD:
 
     def __init__(self, table_name, allowed_delete):

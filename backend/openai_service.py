@@ -73,7 +73,9 @@ def run_script(prompt: Prompt):
 
     sets_db.close()
     flashcards_db.close()
-    return {"result": flashcards_query}
+    new_sets = get_sets()
+
+    return new_sets
 
 def promptOpenAiApi(prompt: str):
     completion = client.chat.completions.create(

@@ -170,9 +170,9 @@ const AnimatedList: React.FC<AnimatedListProps> = ({
             }}
           >
             <div
-              className={`p-4 bg-[#000] rounded-lg ${selectedIndex === index ? "bg-[#000]" : ""} ${itemClassName}`}
+              className={`p-4 bg-[var(--surface)] rounded-lg ${selectedIndex === index ? "bg-[var(--surface)]" : ""} ${itemClassName}`}
             >
-              <p className="text-white m-0">{item}</p>
+              <p className="text-[var(--text-primary)] m-0">{item}</p>
             </div>
           </AnimatedItem>
         ))}

@@ -1,1 +1,18 @@
 @import "tailwindcss";
+
+:root {
+  --bg: #F5F3FA;
+  --surface: #E8E6F1;
+  --text-primary: #2C2C34;
+  --text-secondary: #6B638B;
+  --accent: #A393EB;
+  --accent-secondary: #D8B4E2;
+  --success: #BEE3DB;
+  --peach: #FFD6BA;
+  --darkpeach:#E6B89C;
+  --darkerpeach: #F4C4A3;
+  --answer: #62B38A;
+  --next: #A393EB;
+  --answerhover: #4C9A74;
+  --nexthover: #7E6DD7;
+}

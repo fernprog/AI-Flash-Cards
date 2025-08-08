@@ -6,5 +6,4 @@ Each generated set is saved to the database and linked to the current user’s I
 Flashcard sets are displayed in an animated list, allowing users to select and view different sets dynamically.
 UI improvements and a consistent theme have been introduced to enhance the user experience. 
 
-![Sprint 1](shared/sprint1.1.png)
-![Sprint 1](shared/sprint1.2.png)
+![Sprint 1](shared/screenshot1.png)

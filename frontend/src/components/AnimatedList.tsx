@@ -142,7 +142,7 @@ const AnimatedList: React.FC<AnimatedListProps> = ({
   }, [selectedIndex, keyboardNav]);
 
   return (
-    <div className={`relative w-[500px] ${className}`}>
+    <div className={`relative w-[350px] ${className}`}>
       <div
         ref={listRef}
         className={`max-h-[400px] overflow-y-auto p-4 ${
@@ -153,7 +153,7 @@ const AnimatedList: React.FC<AnimatedListProps> = ({
         onScroll={handleScroll}
         style={{
           scrollbarWidth: displayScrollbar ? "thin" : "none",
-          scrollbarColor: "#222 #060010",
+          scrollbarColor: "#FFD6BA #FFD6BA",
         }}
       >
         {items.map((item, index) => (
@@ -170,7 +170,7 @@ const AnimatedList: React.FC<AnimatedListProps> = ({
             }}
           >
             <div
-              className={`p-4 bg-[var(--surface)] rounded-lg ${selectedIndex === index ? "bg-[var(--surface)]" : ""} ${itemClassName}`}
+              className={`p-4 bg-[var(--bg)] rounded-lg ${selectedIndex === index ? "bg-[var(--peach)]" : ""} ${itemClassName}`}
             >
               <p className="text-[var(--text-primary)] m-0">{item}</p>
             </div>

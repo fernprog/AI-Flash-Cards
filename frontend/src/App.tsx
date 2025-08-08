@@ -11,6 +11,13 @@ function App() {
   const [cards, setCards] = useState<Flashcard[]>([]);
   const [userSets, setUserSets] = useState<FlashcardSet[]>([]);
 
+  const defaultCard = {
+    question: "How do you change me?",
+    answer: "Select from your set list, or generate above :)",
+    difficulty: "Easy",
+    subject: "Tutorial",
+  };
+
   //Keeps track of FC index for display/navigation
   const handleNext = () => {
     setIndex((prev) => (prev + 1) % cards.length);
@@ -35,7 +42,7 @@ function App() {
 
     //update list
     const new_sets = await response.json();
-    setUserSets(new_sets);
+    setUserSets(new_sets.reverse());
   };
 
   //When user selects from list this func updates the displayed flashcards
@@ -50,6 +57,7 @@ function App() {
 
     const flashcards = await response.json();
     setCards(flashcards)
+    setShowText(false);
   };
 
   //On page load grabs the user's FC sets of the list component to display.
@@ -59,7 +67,7 @@ function App() {
         const res = await fetch("http://localhost:8000/flashcard-sets");
         if (!res.ok) throw new Error(`Error: ${res.status}`);
         const data = await res.json();
-        setUserSets(data);
+        setUserSets(data.reverse());
 
       } catch (err) {
         console.error("Failed to load user data", err);
@@ -75,7 +83,7 @@ function App() {
       <Navbar/>
 
       {/* Page content */}
-      <div className="flex flex-col items-center gap-10 min-h-screen bg-[var(--bg)] pb-50">
+      <div className="flex flex-col items-center gap-15 min-h-screen bg-[var(--bg)] pb-15">
 
         {/*Prompt Header*/}
         <div className="flex flex-col justify-center items-center gap-10 bg-[var(--accent)] h-50 w-full">
@@ -98,8 +106,13 @@ function App() {
             </button>
           </form>
         </div>
-          
-        {/* Flashcard List */}  
+
+        <div className="flex felx-row gap-10">
+        {/* Flashcard List */}
+        <div className="bg-[var(--surface)] rounded-2xl">
+          <div className="flex items-center justify-center h-15">
+            <p className="text-center text-lg text-[var(--text-primary)]">Generated Flashcard Sets</p>
+          </div>
         <AnimatedList
           items={userSets.map(set => set.title)}
           onItemSelect={(_, index) => {
@@ -109,17 +122,17 @@ function App() {
           enableArrowNavigation={true}
           displayScrollbar={true}
         />
+        </div>  
 
         {/* Flashcard */}
-        <div className="">
-        {cards.length > 0 && (
+        <div className="flex flex-col justify-center">
           <FlashCards
-            card={cards[index]}
+            card={cards.length > 0 ? cards[index] : defaultCard}
             showText={showText}
             handleClick={handleClick}
             handleNext={handleNext}
           />
-        )}
+        </div>
         </div>
       </div>
     </main>

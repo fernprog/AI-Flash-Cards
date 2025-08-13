@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
-import FlashCards from "./components/FlashCards";
-import AnimatedList from "./components/AnimatedList";
-import Navbar from "./components/Navbar";
-import type { Flashcard, FlashcardSet } from "./types/Flashcards";
+import FlashCards from "../src/components/FlashCards";
+import AnimatedList from "../src/components/AnimatedList";
+import Navbar from "../src/components/Navbar";
+import type { Flashcard, FlashcardSet } from "../src/types/Flashcards";
 
-function App() {
+function DashBoard() {
   const [index, setIndex] = useState(0);
   const [inputText, setInputText] = useState("");
   const [showText, setShowText] = useState(false);
@@ -139,4 +139,4 @@ function App() {
   );
 }
 
-export default App;
+export default DashBoard;

@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 
 export default function Navbar() {
     return(
@@ -11,9 +12,9 @@ export default function Navbar() {
 
           {/* Center: Links */}
           <div className="flex-1 flex justify-center gap-6">
-            <a href="#" className="text-[var(--text-primary)] hover:text-[var(--nexthover)]">Home</a>
-            <a href="#" className="text-[var(--text-primary)] hover:text-[var(--nexthover)]">About</a>
-            <a href="#" className="text-[var(--text-primary)] hover:text-[var(--nexthover)]">Contact</a>
+            <Link to="/login" className="text-[var(--text-primary)] hover:text-[var(--nexthover)]" > A </Link>
+            <Link to="/login" className="text-[var(--text-primary)] hover:text-[var(--nexthover)]" > B </Link>
+            <Link to="/login" className="text-[var(--text-primary)] hover:text-[var(--nexthover)]" > C </Link>
           </div>
 
           {/* Right: Button */}

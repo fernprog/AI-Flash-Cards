@@ -95,6 +95,11 @@ Setup for frontend using React
 
     Icons:
     npm i lucide-react
+    Routing: 
+    npm install react-router-dom
+    npm install @supabase/supabase-js
+
+    
 
 What is?
     React
